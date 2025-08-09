@@ -34,9 +34,15 @@ const Classes = () => {
       <div className="container">
         <h2 className="text-center mb-12">Nasze zajęcia</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map(({ title, Icon, desc, gradient }) => (
-            <div key={title} className={`p-[1px] rounded-xl bg-gradient-to-r ${gradient}`}>
-              <Card className="h-full rounded-[calc(var(--radius)+6px)]">
+            {items.map(({ title, Icon, desc }) => (
+              <Card
+                key={title}
+                className="group relative h-full rounded-xl border border-border bg-card shadow-sm transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)]"
+              >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-1.5 rounded-l-xl bg-gradient-to-b from-primary to-accent opacity-80"
+                />
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-secondary">
@@ -49,8 +55,7 @@ const Classes = () => {
                   <CardDescription>{desc}</CardDescription>
                 </CardContent>
               </Card>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>
