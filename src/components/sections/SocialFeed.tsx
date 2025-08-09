@@ -1,5 +1,6 @@
 import { Instagram, Facebook, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const posts = [
   {
@@ -9,6 +10,7 @@ const posts = [
     url: "https://instagram.com/",
     text: "Kolorowa makrama na dzisiejszych zajęciach – dzieci stworzyły piękne bransoletki!",
     date: "Wczoraj",
+    imageUrl: "/placeholder.svg",
   },
   {
     id: 2,
@@ -17,6 +19,7 @@ const posts = [
     url: "https://facebook.com/",
     text: "Nowa grupa początkujących z hiszpańskiego od marca. Zapisy otwarte!",
     date: "3 dni temu",
+    imageUrl: "/placeholder.svg",
   },
   {
     id: 3,
@@ -25,6 +28,7 @@ const posts = [
     url: "https://instagram.com/",
     text: "Czytamy wspólnie ulubione bajki – jakie tytuły polecacie?",
     date: "Tydzień temu",
+    imageUrl: "/placeholder.svg",
   },
 ];
 
@@ -36,7 +40,19 @@ const SocialFeed = () => (
         {posts.map((p) => {
           const Icon = p.icon;
           return (
-            <Card key={p.id}>
+            <Card key={p.id} className="overflow-hidden">
+              {p.imageUrl && (
+                <div className="px-4 pt-4">
+                  <AspectRatio ratio={4 / 3}>
+                    <img
+                      src={p.imageUrl}
+                      alt={`${p.platform}: ilustracja do posta`}
+                      loading="lazy"
+                      className="h-full w-full rounded-lg object-cover"
+                    />
+                  </AspectRatio>
+                </div>
+              )}
               <CardHeader className="flex-row items-center gap-3">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-secondary">
                   <Icon className="h-4 w-4 text-primary" />
